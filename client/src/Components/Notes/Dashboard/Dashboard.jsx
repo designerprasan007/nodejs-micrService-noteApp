@@ -6,9 +6,7 @@ import './Dashboard.css'
 import EditModal from '../EditModal/EditModal';
 
 const Dashboard = () => {
-
     const dispatch = useDispatch();
-
     useEffect(() =>{
         async function fetchMyNotes() {
             dispatch(getAllNotesAction());
@@ -28,7 +26,7 @@ const Dashboard = () => {
                 setShowNotes(allNotes)
                 return
             }
-             setShowNotes(allNotes.filter((note) => note.category === val))
+             setShowNotes(allNotes?.filter((note) => note.category === val))
     }
     const handleEditModal = (index) =>{
         setIsEditModal(true)

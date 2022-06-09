@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const jwtToken = "IMCODEBUG";
 
 const Schema = mongoose.Schema;
 const { ObjectId } = Schema.Types;

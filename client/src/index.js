@@ -11,7 +11,7 @@ import reducers from "./reducers";
 
 const LocalStoredNotes = localStorage.getItem("MS-notes")
   ? JSON.parse(localStorage.getItem("MS-notes"))
-  : null;
+  : {};
 
 const InitialState = {
   NotesReducer: LocalStoredNotes,

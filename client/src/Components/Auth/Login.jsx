@@ -10,6 +10,7 @@ const Login = () => {
         event.preventDefault()
         try{
             const isSuccessLogin = await axios.post("http://localhost:5001/users/login", userData) 
+            console.log(isSuccessLogin, '==================================')
             localStorage.setItem("notes-ms", JSON.stringify(isSuccessLogin.data.userData))
             localStorage.setItem("MS-notes", JSON.stringify([]));
             window.location.href = "/dashboard"
