@@ -12,8 +12,7 @@ const Dashboard = () => {
             dispatch(getAllNotesAction());
         }
             fetchMyNotes()
-    },[])
-
+    },[dispatch])
 
     const {allNotes} = useSelector((state) => state.NotesReducer);
     const [showNotes, setShowNotes] = useState(allNotes);
@@ -63,7 +62,7 @@ const Dashboard = () => {
                         <p>Status: {note.status}</p>
                         <p>Category: {note.category}</p>
                         <div className='text-center'>
-                            <button onClick={(event) => handleEditModal(index)} className='btn btn-primary mx-2'>Edit</button>
+                            <button onClick={() => handleEditModal(index)} className='btn btn-primary mx-2'>Edit</button>
                             <button className='btn btn-danger mx-2' onClick={() => deleteNote(index)}>Delete</button>
                         </div>
                     </div>

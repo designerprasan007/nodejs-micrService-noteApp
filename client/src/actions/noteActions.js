@@ -45,6 +45,7 @@ export const editNoteAction = (formData, id) => async (dispatch, getState) => {
         noteService: token.token,
       },
     });
+    // eslint-disable-next-line
     allNotes.map((val) => {
       if (val._id === id) {
         val.title = editedNote.data.note.title;
@@ -65,7 +66,7 @@ export const deleteNoteAction = (id) => async (dispatch, getState) => {
     let {
       NotesReducer: { allNotes },
     } = getState();
-    let deletedNote = await axios.delete(`${END_POINT}delete-note/${id}`, {
+    await axios.delete(`${END_POINT}delete-note/${id}`, {
       headers: {
         noteService: token.token,
       },
