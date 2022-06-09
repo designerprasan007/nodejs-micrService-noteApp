@@ -1,0 +1,8 @@
+.editModalhead{
+    position: absolute;
+    top: 32%;
+    background-color: rgba(174, 143, 159, 0.9);
+    width: 63%;
+    height: 300px;
+    left: 14%;
+}
