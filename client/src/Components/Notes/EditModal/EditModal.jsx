@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import './EditModal.css';
 import {editNoteAction, createNewNoteAction} from '../../../actions/noteActions'
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 
 const EditModal = ({editNote, setIsEditModal}) => {
@@ -18,9 +18,11 @@ const EditModal = ({editNote, setIsEditModal}) => {
         if(!editNote?._id){
             console.log("new note")
             dispatch(createNewNoteAction(editValue))
+            setIsEditModal(false)
             return
         }
         dispatch(editNoteAction(editValue, editNote._id));
+        setIsEditModal(false)
     }
     return (
     <div className='editModalhead p-3'>

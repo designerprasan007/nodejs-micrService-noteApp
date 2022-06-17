@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -5,7 +8,7 @@ const cors = require("cors");
 // mongo DB connection calling it when server up
 const DB = require("./config/Database");
 
-const port = 5002;
+const port = process.env.PORT || 5002;
 
 const router = require("./config/Routes");
 

@@ -44,7 +44,6 @@ notesController.getSingleNote = async (req, res) => {
 notesController.editNote = async (req, res) => {
   let { noteId } = req.params;
   let { title, description, status, category } = req.body;
-  console.log(req.body);
   try {
     const preNote = await Note.findById({ _id: noteId });
     const updateNote = await Note.findByIdAndUpdate(

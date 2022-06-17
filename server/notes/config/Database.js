@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 const configureDB = () => {
-  let url =
-    "mongodb+srv://codebug:prasanna123@cluster0.ihev0.mongodb.net/microService";
+  let url = process.env.MONGO_DB;
   mongoose
     .connect(url, {
       useNewUrlParser: true,
