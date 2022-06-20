@@ -2,6 +2,9 @@ const jwt = require("jsonwebtoken");
 const jwtToken = "IMCODEBUG";
 const axios = require("axios");
 
+const amqp = require("amqplib");
+var channel, connection;
+
 // importing redis from the redis
 const redis = require("redis");
 // Redis port
@@ -9,6 +12,18 @@ const REDIS_PORT = 6379;
 
 // creating the connection to the redis
 const client = redis.createClient({ socket: { port: REDIS_PORT } });
+
+connect();
+async function connect() {
+  try {
+    const amqpServer = "amqp://localhost:5672";
+    connection = await amqp.connect(amqpServer);
+    channel = await connection.createChannel();
+    await channel.assertQueue("rabbit");
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 exports.getUserData = async (req, res, next) => {
   // getting JWT token from the headers, the token is appended to headers in the name of noteService
@@ -47,6 +62,10 @@ exports.getUserData = async (req, res, next) => {
         if (!isUser)
           return res.status(401).json({ success: false, err: "Forbidden" });
         await client.setEx(decoded.id, 3600, JSON.stringify(isUser.data.user));
+        await channel.sendToQueue(
+          "rabbit",
+          Buffer.from(JSON.stringify(isUser.data.user))
+        );
         req.user = decoded.id;
         await client.disconnect();
         next();
